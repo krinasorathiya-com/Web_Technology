@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f4f7;
+    padding: 30px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label,
+legend {
+    font-weight: bold;
+    margin-bottom: 7px;
+    display: block;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #4285f4;
+    border-color: #4285f4;
+}
+
+fieldset {
+    border: none;
+    margin-bottom: 18px;
+}
+
+.gender-options {
+    display: flex;
+    gap: 25px;
+}
+
+.gender-options label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gender-options input {
+    width: auto;
+}
+
+.terms {
+    margin-bottom: 20px;
+}
+
+.terms label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-weight: normal;
+}
+
+.terms input {
+    width: auto;
+}
+
+.error {
+    display: block;
+    color: #d93025;
+    font-size: 13px;
+    margin-top: 5px;
+    min-height: 16px;
+}
+
+.input-error {
+    border: 2px solid #d93025;
+}
+
+.input-success {
+    border: 2px solid #188038;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+.success {
+    color: #188038;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+.strength-container {
+    height: 7px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+#strengthBar {
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+}
+
+#strengthText {
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}
