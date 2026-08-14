@@ -3,147 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration Form</title>
+    <meta name="description" content="StudentHub Interactive Dashboard">
+    <title>StudentHub | Interactive Portal</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+    <header class="header">
 
-    <h1>Student Registration Form</h1>
-    <p class="subtitle">Please fill in all the required details.</p>
+        <a href="#" class="logo">Student<span>Hub</span></a>
 
-    <form id="registrationForm" novalidate>
+        <button class="menu-btn" id="menuBtn"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+            ☰
+        </button>
 
-        <!-- Name -->
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name"
-                placeholder="Enter your full name"
-                autocomplete="name">
-            <span class="error" id="nameError"></span>
+        <nav class="navbar" id="navbar">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#events">Events</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+
+            <button id="themeBtn" class="theme-btn" aria-label="Change theme">
+                🌙
+            </button>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= NOTIFICATION ================= -->
+    <div class="notification" id="notification">
+
+        <div>
+            <strong>📢 Important Notice</strong>
+            <span>New StudentHub events have been added!</span>
         </div>
 
-        <!-- Email -->
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email"
-                   placeholder="example@gmail.com"
-                   autocomplete="email">
-            <span class="error" id="emailError"></span>
-        </div>
+        <button id="closeNotification" aria-label="Close notification">
+            ×
+        </button>
 
-        <!-- Mobile -->
-        <div class="form-group">
-            <label for="mobile">Mobile Number</label>
-            <input type="tel" id="mobile" name="mobile"
-                placeholder="10-digit mobile number"
-                maxlength="10"
-                autocomplete="tel">
-            <span class="error" id="mobileError"></span>
-        </div>
+    </div>
 
-        <!-- Password -->
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"
-                placeholder="Enter password"
-                autocomplete="new-password">
 
-            <div class="strength-container">
-                <div id="strengthBar"></div>
+    <!-- ================= HERO ================= -->
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <p class="small-title">WELCOME TO STUDENTHUB</p>
+
+                <h1>
+                    Your Campus.
+                    <span>Your Community.</span>
+                    Your Future.
+                </h1>
+
+                <p>
+                    A smart student portal designed to help students
+                    discover events, manage activities and stay connected.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button class="primary-btn" id="openModal">
+                        Explore StudentHub
+                    </button>
+
+                    <a href="#features" class="secondary-btn">
+                        Learn More
+                    </a>
+
+                </div>
+
             </div>
 
-            <span id="strengthText"></span>
-            <span class="error" id="passwordError"></span>
-        </div>
+            <div class="hero-card">
 
-        <!-- Confirm Password -->
-        <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Re-enter password"
-                autocomplete="new-password">
-            <span class="error" id="confirmPasswordError"></span>
-        </div>
+                <div class="floating-icon">🎓</div>
 
-        <!-- Course -->
-        <div class="form-group">
-            <label for="course">Course</label>
+                <h2>Student Dashboard</h2>
 
-            <select id="course" name="course">
-                <option value="">-- Select Course --</option>
-                <option value="B.Tech AI & ML">B.Tech AI & ML</option>
-                <option value="B.Tech CSE">B.Tech CSE</option>
-                <option value="B.Tech IT">B.Tech IT</option>
-                <option value="BCA">BCA</option>
-                <option value="MCA">MCA</option>
-            </select>
+                <p>Everything you need in one place.</p>
 
-            <span class="error" id="courseError"></span>
-        </div>
+                <div class="dashboard-stats">
 
-        <!-- Year -->
-        <div class="form-group">
-            <label for="year">Year</label>
+                    <div>
+                        <strong>24</strong>
+                        <small>Events</small>
+                    </div>
 
-            <select id="year" name="year">
-                <option value="">-- Select Year --</option>
-                <option value="First Year">First Year</option>
-                <option value="Second Year">Second Year</option>
-                <option value="Third Year">Third Year</option>
-                <option value="Fourth Year">Fourth Year</option>
-            </select>
+                    <div>
+                        <strong>12</strong>
+                        <small>Courses</small>
+                    </div>
 
-            <span class="error" id="yearError"></span>
-        </div>
+                    <div>
+                        <strong>08</strong>
+                        <small>Tasks</small>
+                    </div>
 
-        <!-- Gender -->
-        <fieldset>
-            <legend>Gender</legend>
+                </div>
 
-            <div class="gender-options">
-                <label>
-                    <input type="radio" name="gender" value="Male">
-                    Male
-                </label>
-
-                <label>
-                    <input type="radio" name="gender" value="Female">
-                    Female
-                </label>
-
-                <label>
-                    <input type="radio" name="gender" value="Other">
-                    Other
-                </label>
             </div>
 
-            <span class="error" id="genderError"></span>
-        </fieldset>
+        </section>
 
-        <!-- Terms -->
-        <div class="terms">
-            <label>
-                <input type="checkbox" id="terms" name="terms">
-                I agree to the Terms and Conditions.
-            </label>
 
-            <span class="error" id="termsError"></span>
+        <!-- ================= FEATURES ================= -->
+        <section class="section" id="features">
+
+            <div class="section-heading">
+
+                <p>INTERACTIVE FEATURES</p>
+
+                <h2>Everything Students Need</h2>
+
+                <span>
+                    Explore useful features powered by JavaScript.
+                </span>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">📅</div>
+
+                    <h3>Events</h3>
+
+                    <p>
+                        Discover workshops, competitions,
+                        seminars and campus activities.
+                    </p>
+
+                    <button class="card-btn">Explore →</button>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">📚</div>
+
+                    <h3>Learning</h3>
+
+                    <p>
+                        Access your academic information
+                        and important learning resources.
+                    </p>
+
+                    <button class="card-btn">Explore →</button>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">👥</div>
+
+                    <h3>Community</h3>
+
+                    <p>
+                        Connect with students and participate
+                        in university activities.
+                    </p>
+
+                    <button class="card-btn">Explore →</button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SLIDER ================= -->
+        <section class="slider-section" id="events">
+
+            <div class="section-heading">
+
+                <p>CAMPUS HIGHLIGHTS</p>
+
+                <h2>Upcoming Events</h2>
+
+            </div>
+
+
+            <div class="slider">
+
+                <div class="slide active">
+
+                    <div class="slide-content">
+
+                        <span>01</span>
+
+                        <h2>AI & Machine Learning Workshop</h2>
+
+                        <p>
+                            Learn about artificial intelligence,
+                            machine learning and real-world applications.
+                        </p>
+
+                        <strong>📅 20 August 2026</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="slide">
+
+                    <div class="slide-content">
+
+                        <span>02</span>
+
+                        <h2>Hackathon 2026</h2>
+
+                        <p>
+                            Build innovative solutions and compete
+                            with talented students.
+                        </p>
+
+                        <strong>📅 28 August 2026</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="slide">
+
+                    <div class="slide-content">
+
+                        <span>03</span>
+
+                        <h2>Annual Cultural Fest</h2>
+
+                        <p>
+                            Celebrate creativity, culture and
+                            student talent together.
+                        </p>
+
+                        <strong>📅 05 September 2026</strong>
+
+                    </div>
+
+                </div>
+
+
+                <button class="slider-btn prev" id="prevBtn"
+                        aria-label="Previous slide">
+                    ❮
+                </button>
+
+                <button class="slider-btn next" id="nextBtn"
+                        aria-label="Next slide">
+                    ❯
+                </button>
+
+            </div>
+
+
+            <div class="dots" id="dots"></div>
+
+        </section>
+
+
+        <!-- ================= FAQ ================= -->
+        <section class="section faq-section" id="faq">
+
+            <div class="section-heading">
+
+                <p>NEED HELP?</p>
+
+                <h2>Frequently Asked Questions</h2>
+
+                <span>
+                    Click a question to see the answer.
+                </span>
+
+            </div>
+
+
+            <div class="faq-container">
+
+                <div class="faq-item">
+
+                    <button class="faq-question"
+                            aria-expanded="false">
+
+                        <span>What is StudentHub?</span>
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            StudentHub is a digital student portal
+                            that provides useful academic and campus
+                            information in one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question"
+                            aria-expanded="false">
+
+                        <span>Can I view university events?</span>
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            Yes. Students can view upcoming workshops,
+                            competitions, seminars and cultural events.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question"
+                            aria-expanded="false">
+
+                        <span>Does the website remember my theme?</span>
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            Yes. JavaScript localStorage saves your
+                            light or dark theme preference.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question"
+                            aria-expanded="false">
+
+                        <span>Is StudentHub mobile friendly?</span>
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <p>
+                            Yes. The layout automatically adjusts
+                            for mobile, tablet and desktop screens.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTACT ================= -->
+        <section class="contact-section" id="contact">
+
+            <div>
+
+                <p>GET IN TOUCH</p>
+
+                <h2>Have Questions?</h2>
+
+                <span>
+                    Our student support team is here to help.
+                </span>
+
+            </div>
+
+            <button class="primary-btn" id="contactBtn">
+                Contact Support
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= MODAL ================= -->
+    <div class="modal" id="modal" role="dialog"
+         aria-modal="true"
+         aria-labelledby="modalTitle">
+
+        <div class="modal-box">
+
+            <button class="modal-close" id="closeModal"
+                    aria-label="Close popup">
+                ×
+            </button>
+
+            <div class="modal-icon">🎓</div>
+
+            <h2 id="modalTitle">Welcome to StudentHub!</h2>
+
+            <p>
+                This interactive page demonstrates JavaScript
+                DOM manipulation, events, animations and localStorage.
+            </p>
+
+            <button class="primary-btn" id="modalDone">
+                Get Started
+            </button>
+
         </div>
 
-        <!-- Submit -->
-        <button type="submit">Register</button>
+    </div>
 
-        <div id="successMessage" class="success"></div>
+    <footer>
 
-    </form>
+        <div class="footer-logo">
+            Student<span>Hub</span>
+        </div>
 
-</div>
+        <p>
+            Interactive Student Portal © 2026
+        </p>
 
-<script src="script.js"></script>
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>

@@ -1,401 +1,455 @@
-const form = document.getElementById("registrationForm");
+const menuBtn = document.getElementById("menuBtn");
+const navbar = document.getElementById("navbar");
 
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const mobileInput = document.getElementById("mobile");
-const passwordInput = document.getElementById("password");
-const confirmPasswordInput = document.getElementById("confirmPassword");
-const courseInput = document.getElementById("course");
-const yearInput = document.getElementById("year");
-const termsInput = document.getElementById("terms");
+const themeBtn = document.getElementById("themeBtn");
 
-// Regular Expressions
-const nameRegex = /^[A-Za-z ]{2,50}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const mobileRegex = /^[6-9][0-9]{9}$/;
-const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+const notification = document.getElementById("notification");
+const closeNotification =
+    document.getElementById("closeNotification");
 
+const openModal =
+    document.getElementById("openModal");
 
-// Show error
-function showError(input, errorId, message) {
-    input.classList.add("input-error");
-    input.classList.remove("input-success");
+const closeModal =
+    document.getElementById("closeModal");
 
-    document.getElementById(errorId).textContent = message;
-}
+const modal =
+    document.getElementById("modal");
 
+const modalDone =
+    document.getElementById("modalDone");
 
-// Clear error
-function clearError(input, errorId) {
-    input.classList.remove("input-error");
-    input.classList.add("input-success");
+const contactBtn =
+    document.getElementById("contactBtn");
 
-    document.getElementById(errorId).textContent = "";
-}
+const prevBtn =
+    document.getElementById("prevBtn");
 
+const nextBtn =
+    document.getElementById("nextBtn");
 
-// NAME VALIDATION
-function validateName() {
+const slides =
+    document.querySelectorAll(".slide");
 
-    const name = nameInput.value.trim();
+const dotsContainer =
+    document.getElementById("dots");
 
-    if (name === "") {
-        showError(
-            nameInput,
-            "nameError",
-            "❌ Name is required."
-        );
-        return false;
-    }
-
-    if (!nameRegex.test(name)) {
-        showError(
-            nameInput,
-            "nameError",
-            "❌ Name must contain only letters and spaces."
-        );
-        return false;
-    }
-
-    clearError(nameInput, "nameError");
-    return true;
-}
+const faqQuestions =
+    document.querySelectorAll(".faq-question");
 
 
-// EMAIL VALIDATION
-function validateEmail() {
+menuBtn.addEventListener("click", function () {
 
-    const email = emailInput.value.trim();
+    navbar.classList.toggle("open");
 
-    if (email === "") {
-        showError(
-            emailInput,
-            "emailError",
-            "❌ Email address is required."
-        );
-        return false;
-    }
+    const isOpen =
+        navbar.classList.contains("open");
 
-    if (!emailRegex.test(email)) {
-        showError(
-            emailInput,
-            "emailError",
-            "❌ Please enter a valid email address."
-        );
-        return false;
-    }
-
-    clearError(emailInput, "emailError");
-    return true;
-}
-
-
-// MOBILE VALIDATION
-function validateMobile() {
-
-    const mobile = mobileInput.value.trim();
-
-    if (mobile === "") {
-        showError(
-            mobileInput,
-            "mobileError",
-            "❌ Mobile number is required."
-        );
-        return false;
-    }
-
-    if (!mobileRegex.test(mobile)) {
-        showError(
-            mobileInput,
-            "mobileError",
-            "❌ Enter a valid 10-digit Indian mobile number."
-        );
-        return false;
-    }
-
-    clearError(mobileInput, "mobileError");
-    return true;
-}
-
-
-// PASSWORD STRENGTH
-function checkPasswordStrength() {
-
-    const password = passwordInput.value;
-
-    const strengthBar =
-        document.getElementById("strengthBar");
-
-    const strengthText =
-        document.getElementById("strengthText");
-
-    let score = 0;
-
-    if (password.length >= 8) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[a-z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[!@#$%^&*]/.test(password)) score++;
-
-    if (password.length === 0) {
-
-        strengthBar.style.width = "0%";
-        strengthText.textContent = "";
-
-    } else if (score <= 2) {
-
-        strengthBar.style.width = "33%";
-        strengthText.textContent = "Weak Password";
-
-    } else if (score <= 4) {
-
-        strengthBar.style.width = "66%";
-        strengthText.textContent = "Medium Password";
-
-    } else {
-
-        strengthBar.style.width = "100%";
-        strengthText.textContent = "Strong Password";
-    }
-}
-
-
-// PASSWORD VALIDATION
-function validatePassword() {
-
-    const password = passwordInput.value;
-
-    if (password === "") {
-
-        showError(
-            passwordInput,
-            "passwordError",
-            "❌ Password is required."
-        );
-
-        return false;
-    }
-
-    if (!passwordRegex.test(password)) {
-
-        showError(
-            passwordInput,
-            "passwordError",
-            "❌ Password must have 8+ characters, uppercase, lowercase, number and special character."
-        );
-
-        return false;
-    }
-
-    clearError(passwordInput, "passwordError");
-    return true;
-}
-
-
-// CONFIRM PASSWORD
-function validateConfirmPassword() {
-
-    const confirmPassword =
-        confirmPasswordInput.value;
-
-    if (confirmPassword === "") {
-
-        showError(
-            confirmPasswordInput,
-            "confirmPasswordError",
-            "❌ Please confirm your password."
-        );
-
-        return false;
-    }
-
-    if (confirmPassword !== passwordInput.value) {
-
-        showError(
-            confirmPasswordInput,
-            "confirmPasswordError",
-            "❌ Passwords do not match."
-        );
-
-        return false;
-    }
-
-    clearError(
-        confirmPasswordInput,
-        "confirmPasswordError"
+    menuBtn.setAttribute(
+        "aria-expanded",
+        isOpen
     );
 
-    return true;
-}
+    menuBtn.textContent =
+        isOpen ? "✕" : "☰";
+
+});
 
 
-// COURSE
-function validateCourse() {
+const navLinks =
+    document.querySelectorAll(".navbar a");
 
-    if (courseInput.value === "") {
+navLinks.forEach(function (link) {
 
-        showError(
-            courseInput,
-            "courseError",
-            "❌ Please select a course."
+    link.addEventListener("click", function () {
+
+        navbar.classList.remove("open");
+
+        menuBtn.textContent = "☰";
+
+        menuBtn.setAttribute(
+            "aria-expanded",
+            "false"
         );
 
-        return false;
-    }
+    });
 
-    clearError(courseInput, "courseError");
-    return true;
-}
+});
 
 
-// YEAR
-function validateYear() {
+function applyTheme(theme) {
 
-    if (yearInput.value === "") {
+    if (theme === "dark") {
 
-        showError(
-            yearInput,
-            "yearError",
-            "❌ Please select your year."
+        document.body.classList.add("dark");
+
+        themeBtn.textContent = "☀️";
+
+        themeBtn.setAttribute(
+            "aria-label",
+            "Switch to light mode"
         );
-
-        return false;
-    }
-
-    clearError(yearInput, "yearError");
-    return true;
-}
-
-
-// GENDER
-function validateGender() {
-
-    const gender =
-        document.querySelector(
-            'input[name="gender"]:checked'
-        );
-
-    const error =
-        document.getElementById("genderError");
-
-    if (!gender) {
-
-        error.textContent =
-            "❌ Please select your gender.";
-
-        return false;
-    }
-
-    error.textContent = "";
-    return true;
-}
-
-
-// TERMS
-function validateTerms() {
-
-    const error =
-        document.getElementById("termsError");
-
-    if (!termsInput.checked) {
-
-        error.textContent =
-            "❌ You must accept the Terms and Conditions.";
-
-        return false;
-    }
-
-    error.textContent = "";
-    return true;
-}
-
-
-// REAL-TIME VALIDATION
-
-nameInput.addEventListener("input", validateName);
-
-emailInput.addEventListener("input", validateEmail);
-
-mobileInput.addEventListener("input", validateMobile);
-
-passwordInput.addEventListener(
-    "input",
-    function () {
-        checkPasswordStrength();
-        validatePassword();
-    }
-);
-
-confirmPasswordInput.addEventListener(
-    "input",
-    validateConfirmPassword
-);
-
-courseInput.addEventListener(
-    "change",
-    validateCourse
-);
-
-yearInput.addEventListener(
-    "change",
-    validateYear
-);
-
-termsInput.addEventListener(
-    "change",
-    validateTerms
-);
-
-
-// SUBMIT VALIDATION
-
-form.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const validName = validateName();
-    const validEmail = validateEmail();
-    const validMobile = validateMobile();
-    const validPassword = validatePassword();
-    const validConfirmPassword =
-        validateConfirmPassword();
-    const validCourse = validateCourse();
-    const validYear = validateYear();
-    const validGender = validateGender();
-    const validTerms = validateTerms();
-
-    if (
-        validName &&
-        validEmail &&
-        validMobile &&
-        validPassword &&
-        validConfirmPassword &&
-        validCourse &&
-        validYear &&
-        validGender &&
-        validTerms
-    ) {
-
-        document.getElementById(
-            "successMessage"
-        ).textContent =
-            "Registration successful!";
-
-        form.reset();
-
-        document.getElementById(
-            "strengthBar"
-        ).style.width = "0%";
-
-        document.getElementById(
-            "strengthText"
-        ).textContent = "";
 
     } else {
 
-        document.getElementById(
-            "successMessage"
-        ).textContent = "";
+        document.body.classList.remove("dark");
+
+        themeBtn.textContent = "🌙";
+
+        themeBtn.setAttribute(
+            "aria-label",
+            "Switch to dark mode"
+        );
     }
+}
+
+
+
+const savedTheme =
+    localStorage.getItem("studentHubTheme");
+
+if (savedTheme) {
+
+    applyTheme(savedTheme);
+
+} else {
+
+    applyTheme("light");
+
+}
+
+
+
+themeBtn.addEventListener("click", function () {
+
+    const isDark =
+        document.body.classList.contains("dark");
+
+    const newTheme =
+        isDark ? "light" : "dark";
+
+    applyTheme(newTheme);
+
+    localStorage.setItem(
+        "studentHubTheme",
+        newTheme
+    );
+
 });
+
+
+closeNotification.addEventListener(
+    "click",
+    function () {
+
+        notification.style.transform =
+            "translateY(-100%)";
+
+        notification.style.opacity = "0";
+
+        setTimeout(function () {
+
+            notification.style.display =
+                "none";
+
+        }, 400);
+
+    }
+);
+
+
+function showModal() {
+
+    modal.classList.add("show");
+
+    document.body.style.overflow =
+        "hidden";
+
+    closeModal.focus();
+
+}
+
+
+function hideModal() {
+
+    modal.classList.remove("show");
+
+    document.body.style.overflow =
+        "";
+
+    openModal.focus();
+
+}
+
+
+openModal.addEventListener(
+    "click",
+    showModal
+);
+
+closeModal.addEventListener(
+    "click",
+    hideModal
+);
+
+modalDone.addEventListener(
+    "click",
+    hideModal
+);
+
+
+
+modal.addEventListener("click", function (event) {
+
+    if (event.target === modal) {
+
+        hideModal();
+
+    }
+
+});
+
+
+document.addEventListener("keydown", function (event) {
+
+    if (
+        event.key === "Escape" &&
+        modal.classList.contains("show")
+    ) {
+
+        hideModal();
+
+    }
+
+});
+
+
+faqQuestions.forEach(function (question) {
+
+    question.addEventListener(
+        "click",
+        function () {
+
+            const answer =
+                question.nextElementSibling;
+
+            const currentlyOpen =
+                question.getAttribute(
+                    "aria-expanded"
+                ) === "true";
+
+
+            
+
+            faqQuestions.forEach(
+                function (otherQuestion) {
+
+                    if (otherQuestion !== question) {
+
+                        otherQuestion.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                        otherQuestion
+                            .nextElementSibling
+                            .style.maxHeight = null;
+
+                    }
+
+                }
+            );
+
+
+            if (!currentlyOpen) {
+
+                question.setAttribute(
+                    "aria-expanded",
+                    "true"
+                );
+
+                answer.style.maxHeight =
+                    answer.scrollHeight + "px";
+
+            } else {
+
+                question.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                answer.style.maxHeight = null;
+
+            }
+
+        }
+    );
+
+});
+
+
+let currentSlide = 0;
+
+
+slides.forEach(function (_, index) {
+
+    const dot =
+        document.createElement("button");
+
+    dot.classList.add("dot");
+
+    dot.setAttribute(
+        "aria-label",
+        "Go to slide " + (index + 1)
+    );
+
+    dot.addEventListener(
+        "click",
+        function () {
+
+            currentSlide = index;
+
+            showSlide(currentSlide);
+
+        }
+    );
+
+    dotsContainer.appendChild(dot);
+
+});
+
+
+const dots =
+    document.querySelectorAll(".dot");
+
+
+function showSlide(index) {
+
+    slides.forEach(function (slide, i) {
+
+        slide.classList.toggle(
+            "active",
+            i === index
+        );
+
+    });
+
+
+    dots.forEach(function (dot, i) {
+
+        dot.classList.toggle(
+            "active",
+            i === index
+        );
+
+    });
+
+}
+
+
+nextBtn.addEventListener(
+    "click",
+    function () {
+
+        currentSlide++;
+
+        if (currentSlide >= slides.length) {
+
+            currentSlide = 0;
+
+        }
+
+        showSlide(currentSlide);
+
+    }
+);
+
+
+prevBtn.addEventListener(
+    "click",
+    function () {
+
+        currentSlide--;
+
+        if (currentSlide < 0) {
+
+            currentSlide =
+                slides.length - 1;
+
+        }
+
+        showSlide(currentSlide);
+
+    }
+);
+
+
+setInterval(function () {
+
+    currentSlide++;
+
+    if (currentSlide >= slides.length) {
+
+        currentSlide = 0;
+
+    }
+
+    showSlide(currentSlide);
+
+}, 5000);
+
+
+showSlide(currentSlide);
+
+
+contactBtn.addEventListener(
+    "click",
+    function () {
+
+        alert(
+            "Thank you for contacting StudentHub! " +
+            "Our support team will contact you soon."
+        );
+
+    }
+);
+
+
+const cardButtons =
+    document.querySelectorAll(".card-btn");
+
+cardButtons.forEach(function (button) {
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            const card =
+                button.closest(".feature-card");
+
+            const title =
+                card.querySelector("h3").textContent;
+
+            alert(
+                "You selected the " +
+                title +
+                " feature."
+            );
+
+        }
+    );
+
+});
+
+
+console.log(
+    "StudentHub Practical 4 JavaScript loaded successfully!"
+);
+
+console.log(
+    "DOM elements selected:",
+    slides.length,
+    "slides and",
+    faqQuestions.length,
+    "FAQ questions."
+);
