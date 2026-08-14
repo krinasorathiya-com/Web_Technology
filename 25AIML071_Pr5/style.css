@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6c5ce7;
+    margin: 8px 0 25px;
+    font-weight: bold;
+}
+
+label,
+legend {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 6px;
+    color: #333;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #6c5ce7;
+}
+
+span {
+    display: block;
+    color: #e74c3c;
+    font-size: 12px;
+    min-height: 16px;
+    margin-top: 4px;
+}
+
+fieldset {
+    border: 0;
+}
+
+.radio,
+.terms {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+    font-weight: normal;
+}
+
+.radio input,
+.terms input {
+    width: auto;
+}
+
+.strength {
+    height: 6px;
+    background: #ddd;
+    border-radius: 10px;
+    margin-top: 7px;
+    overflow: hidden;
+}
+
+#strengthBar {
+    height: 100%;
+    width: 0;
+    transition: .3s;
+}
+
+#strengthText {
+    color: #777;
+    font-size: 12px;
+}
+
+#captchaCanvas {
+    display: block;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+#refreshCaptcha {
+    border: 0;
+    background: none;
+    color: #6c5ce7;
+    cursor: pointer;
+    margin-top: 7px;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #5748d4;
+}
+
+@media (max-width: 600px) {
+    .form-card {
+        padding: 25px 20px;
+    }
+
+    .radio {
+        margin-bottom: 5px;
+    }
+}

@@ -3,178 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIML StudentHub - Practical 4</title>
+    <title>Student Registration</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Notification -->
-    <div id="notification" class="notification">
-        Welcome to AIML StudentHub!
-        <button id="closeNotice" aria-label="Close notification">&times;</button>
+<div class="container">
+    <div class="form-card">
+
+        <h1>Student Registration</h1>
+        <p class="subtitle"> Student Portal</p>
+
+        <form id="registrationForm">
+
+            <label for="name">Full Name</label>
+            <input type="text" id="name"
+                   placeholder="Enter your full name">
+            <span id="nameError"></span>
+
+            <label for="email">Email</label>
+            <input type="email" id="email"
+                   placeholder="example@gmail.com">
+            <span id="emailError"></span>
+
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile"
+                   placeholder="10 digit mobile number"
+                   maxlength="10">
+            <span id="mobileError"></span>
+
+            <label for="course">Course</label>
+            <select id="course">
+                <option value="">Select Course</option>
+                <option value="AIML">B.Tech AI & ML</option>
+                <option value="CSE">B.Tech CSE</option>
+                <option value="IT">B.Tech IT</option>
+                <option value="IT">B.Tech EC</option>
+                <option value="CE">B.Tech CE</option>
+            </select>
+            <span id="courseError"></span>
+
+            <label for="year">Year</label>
+            <select id="year">
+                <option value="">Select Year</option>
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+            </select>
+            <span id="yearError"></span>
+
+            <fieldset>
+                <legend>Gender</legend>
+
+                <label class="radio">
+                    <input type="radio" name="gender" value="Male">
+                    Male
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="gender" value="Female">
+                    Female
+                </label>
+
+                <label class="radio">
+                    <input type="radio" name="gender" value="Other">
+                    Other
+                </label>
+
+                <span id="genderError"></span>
+            </fieldset>
+
+            <label for="password">Password</label>
+            <input type="password" id="password"
+                   placeholder="Create password">
+
+            <div class="strength">
+                <div id="strengthBar"></div>
+            </div>
+
+            <small id="strengthText">Password strength</small>
+            <span id="passwordError"></span>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword"
+                   placeholder="Re-enter password">
+            <span id="confirmError"></span>
+
+            <!-- CAPTCHA -->
+            <label for="captchaInput">Enter CAPTCHA</label>
+
+            <canvas id="captchaCanvas"
+                    width="180"
+                    height="50">
+            </canvas>
+
+            <button type="button" id="refreshCaptcha">
+                Refresh CAPTCHA
+            </button>
+
+            <input type="text" id="captchaInput"
+                   placeholder="Enter code shown above">
+            <span id="captchaError"></span>
+
+            <!-- Terms -->
+            <label class="terms">
+                <input type="checkbox" id="terms">
+                I agree to the Terms and Conditions
+            </label>
+            <span id="termsError"></span>
+
+            <button type="submit" class="submit-btn">
+                Register Now
+            </button>
+
+        </form>
     </div>
+</div>
 
-    <!-- Navigation -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">AIML<span>Hub</span></div>
-
-            <button id="menuBtn" class="menu-btn" aria-label="Open menu">
-                ☰
-            </button>
-
-            <ul id="navLinks" class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li>
-                    <button id="themeBtn" class="theme-btn">🌙 Dark</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <p class="tag">B.Tech AIML • Student Portal</p>
-                <h1>Learn. Build. <span>Innovate.</span></h1>
-                <p>
-                    A simple interactive student portal demonstrating
-                    JavaScript DOM manipulation and UI interactivity.
-                </p>
-
-                <button id="openModal" class="primary-btn">
-                    Explore StudentHub
-                </button>
-            </div>
-
-            <div class="hero-card">
-                <div class="brain">🤖</div>
-                <h3>AI + ML</h3>
-                <p>Code your ideas into reality.</p>
-            </div>
-        </section>
-
-        <!-- Events Slider -->
-        <section id="events" class="section">
-            <div class="section-title">
-                <p class="tag">Upcoming</p>
-                <h2>Student Events</h2>
-            </div>
-
-            <div class="slider">
-                <button id="prevBtn" class="slide-btn" aria-label="Previous">
-                    ❮
-                </button>
-
-                <div id="slideContent" class="slide-content">
-                    <div class="event-icon">💻</div>
-                    <h3>AI Hackathon</h3>
-                    <p>Build an intelligent solution in 24 hours.</p>
-                    <small>20 August 2026</small>
-                </div>
-
-                <button id="nextBtn" class="slide-btn" aria-label="Next">
-                    ❯
-                </button>
-            </div>
-
-            <div id="dots" class="dots"></div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="section faq-section">
-            <div class="section-title">
-                <p class="tag">Questions</p>
-                <h2>Frequently Asked Questions</h2>
-            </div>
-
-            <div class="faq">
-                <button class="faq-question">
-                    What is AIML?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        AIML combines Artificial Intelligence and Machine
-                        Learning to create intelligent computer systems.
-                    </p>
-                </div>
-            </div>
-
-            <div class="faq">
-                <button class="faq-question">
-                    Why learn JavaScript?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        JavaScript makes websites interactive and allows
-                        developers to manipulate HTML and CSS dynamically.
-                    </p>
-                </div>
-            </div>
-
-            <div class="faq">
-                <button class="faq-question">
-                    What is DOM?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>
-                        DOM stands for Document Object Model. It represents
-                        an HTML page as objects that JavaScript can modify.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact" class="contact section">
-            <div>
-                <p class="tag">Get Connected</p>
-                <h2>Ready to Build Something?</h2>
-                <p>
-                    Explore technology, participate in events and improve
-                    your development skills.
-                </p>
-            </div>
-
-            <button id="contactBtn" class="primary-btn">
-                Contact StudentHub
-            </button>
-        </section>
-    </main>
-
-    <!-- Modal -->
-    <div id="modal" class="modal" role="dialog" aria-modal="true"
-         aria-labelledby="modalTitle">
-
-        <div class="modal-box">
-            <button id="closeModal" class="close-modal"
-                    aria-label="Close modal">&times;</button>
-
-            <div class="modal-icon">🚀</div>
-            <h2 id="modalTitle">Welcome to StudentHub</h2>
-            <p>
-                This website demonstrates DOM manipulation, events,
-                localStorage, sliders, modal windows and responsive UI.
-            </p>
-
-            <button id="modalDone" class="primary-btn">
-                Let's Start
-            </button>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 AIML StudentHub | JavaScript Practical 4</p>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="form.js"></script>
 </body>
 </html>
