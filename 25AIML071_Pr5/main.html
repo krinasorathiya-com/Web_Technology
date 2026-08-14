@@ -3,62 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="StudentHub Interactive Dashboard">
-    <title>StudentHub | Interactive Portal</title>
 
+    <meta name="description"
+        content="StudentHub Interactive Student Portal">
+
+    <title>StudentHub | Practical 4</title>
+
+    <!-- CSS FILE -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- ================= HEADER ================= -->
+
     <header class="header">
 
-        <a href="#" class="logo">Student<span>Hub</span></a>
+        <a href="#home" class="logo">
+            Student<span>Hub</span>
+        </a>
 
-        <button class="menu-btn" id="menuBtn"
-                aria-label="Open navigation menu"
-                aria-expanded="false">
+        <!-- Hamburger Button -->
+        <button
+            id="menuBtn"
+            class="menu-btn"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
             ☰
         </button>
 
-        <nav class="navbar" id="navbar">
+        <!-- Navigation -->
+        <nav id="navbar" class="navbar">
+
             <a href="#home">Home</a>
             <a href="#features">Features</a>
             <a href="#events">Events</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
 
-            <button id="themeBtn" class="theme-btn" aria-label="Change theme">
+            <!-- Theme Button -->
+            <button
+                id="themeBtn"
+                class="theme-btn"
+                type="button"
+                aria-label="Switch to dark mode">
                 🌙
             </button>
+
         </nav>
 
     </header>
 
 
     <!-- ================= NOTIFICATION ================= -->
-    <div class="notification" id="notification">
 
-        <div>
+    <div id="notification" class="notification">
+
+        <div class="notification-content">
+
             <strong>📢 Important Notice</strong>
-            <span>New StudentHub events have been added!</span>
+
+            <span>
+                New StudentHub events have been added!
+            </span>
+
         </div>
 
-        <button id="closeNotification" aria-label="Close notification">
+        <button
+            id="closeNotification"
+            type="button"
+            aria-label="Close notification">
             ×
         </button>
 
     </div>
 
 
-    <!-- ================= HERO ================= -->
+    <!-- ================= MAIN ================= -->
+
     <main>
 
-        <section class="hero" id="home">
+        <!-- ================= HERO ================= -->
+
+        <section id="home" class="hero">
 
             <div class="hero-content">
 
-                <p class="small-title">WELCOME TO STUDENTHUB</p>
+                <p class="small-title">
+                    WELCOME TO STUDENTHUB
+                </p>
 
                 <h1>
                     Your Campus.
@@ -66,18 +100,24 @@
                     Your Future.
                 </h1>
 
-                <p>
-                    A smart student portal designed to help students
-                    discover events, manage activities and stay connected.
+                <p class="hero-description">
+                    A smart student portal designed to help
+                    students discover events, manage activities,
+                    and stay connected.
                 </p>
 
                 <div class="hero-buttons">
 
-                    <button class="primary-btn" id="openModal">
+                    <button
+                        id="openModal"
+                        class="primary-btn"
+                        type="button">
                         Explore StudentHub
                     </button>
 
-                    <a href="#features" class="secondary-btn">
+                    <a
+                        href="#features"
+                        class="secondary-btn">
                         Learn More
                     </a>
 
@@ -85,13 +125,23 @@
 
             </div>
 
+
+            <!-- Dashboard Card -->
+
             <div class="hero-card">
 
-                <div class="floating-icon">🎓</div>
+                <div class="floating-icon">
+                    🎓
+                </div>
 
-                <h2>Student Dashboard</h2>
+                <h2>
+                    Student Dashboard
+                </h2>
 
-                <p>Everything you need in one place.</p>
+                <p>
+                    Everything you need in one place.
+                </p>
+
 
                 <div class="dashboard-stats">
 
@@ -118,13 +168,16 @@
 
 
         <!-- ================= FEATURES ================= -->
-        <section class="section" id="features">
+
+        <section id="features" class="section">
 
             <div class="section-heading">
 
                 <p>INTERACTIVE FEATURES</p>
 
-                <h2>Everything Students Need</h2>
+                <h2>
+                    Everything Students Need
+                </h2>
 
                 <span>
                     Explore useful features powered by JavaScript.
@@ -135,50 +188,80 @@
 
             <div class="feature-grid">
 
+                <!-- Card 1 -->
+
                 <article class="feature-card">
 
-                    <div class="feature-icon">📅</div>
+                    <div class="feature-icon">
+                        📅
+                    </div>
 
-                    <h3>Events</h3>
+                    <h3>
+                        Events
+                    </h3>
 
                     <p>
                         Discover workshops, competitions,
                         seminars and campus activities.
                     </p>
 
-                    <button class="card-btn">Explore →</button>
+                    <button
+                        class="card-btn"
+                        type="button">
+                        Explore →
+                    </button>
 
                 </article>
 
 
+                <!-- Card 2 -->
+
                 <article class="feature-card">
 
-                    <div class="feature-icon">📚</div>
+                    <div class="feature-icon">
+                        📚
+                    </div>
 
-                    <h3>Learning</h3>
+                    <h3>
+                        Learning
+                    </h3>
 
                     <p>
-                        Access your academic information
+                        Access academic information
                         and important learning resources.
                     </p>
 
-                    <button class="card-btn">Explore →</button>
+                    <button
+                        class="card-btn"
+                        type="button">
+                        Explore →
+                    </button>
 
                 </article>
 
 
+                <!-- Card 3 -->
+
                 <article class="feature-card">
 
-                    <div class="feature-icon">👥</div>
+                    <div class="feature-icon">
+                        👥
+                    </div>
 
-                    <h3>Community</h3>
+                    <h3>
+                        Community
+                    </h3>
 
                     <p>
                         Connect with students and participate
                         in university activities.
                     </p>
 
-                    <button class="card-btn">Explore →</button>
+                    <button
+                        class="card-btn"
+                        type="button">
+                        Explore →
+                    </button>
 
                 </article>
 
@@ -188,18 +271,25 @@
 
 
         <!-- ================= SLIDER ================= -->
-        <section class="slider-section" id="events">
 
-            <div class="section-heading">
+        <section id="events" class="slider-section">
 
-                <p>CAMPUS HIGHLIGHTS</p>
+            <div class="section-heading dark-heading">
 
-                <h2>Upcoming Events</h2>
+                <p>
+                    CAMPUS HIGHLIGHTS
+                </p>
+
+                <h2>
+                    Upcoming Events
+                </h2>
 
             </div>
 
 
             <div class="slider">
+
+                <!-- Slide 1 -->
 
                 <div class="slide active">
 
@@ -207,19 +297,26 @@
 
                         <span>01</span>
 
-                        <h2>AI & Machine Learning Workshop</h2>
+                        <h2>
+                            AI & Machine Learning Workshop
+                        </h2>
 
                         <p>
                             Learn about artificial intelligence,
-                            machine learning and real-world applications.
+                            machine learning and real-world
+                            applications.
                         </p>
 
-                        <strong>📅 20 August 2026</strong>
+                        <strong>
+                            📅 20 August 2026
+                        </strong>
 
                     </div>
 
                 </div>
 
+
+                <!-- Slide 2 -->
 
                 <div class="slide">
 
@@ -227,19 +324,25 @@
 
                         <span>02</span>
 
-                        <h2>Hackathon 2026</h2>
+                        <h2>
+                            Hackathon 2026
+                        </h2>
 
                         <p>
                             Build innovative solutions and compete
                             with talented students.
                         </p>
 
-                        <strong>📅 28 August 2026</strong>
+                        <strong>
+                            📅 28 August 2026
+                        </strong>
 
                     </div>
 
                 </div>
 
+
+                <!-- Slide 3 -->
 
                 <div class="slide">
 
@@ -247,46 +350,71 @@
 
                         <span>03</span>
 
-                        <h2>Annual Cultural Fest</h2>
+                        <h2>
+                            Annual Cultural Fest
+                        </h2>
 
                         <p>
                             Celebrate creativity, culture and
                             student talent together.
                         </p>
 
-                        <strong>📅 05 September 2026</strong>
+                        <strong>
+                            📅 05 September 2026
+                        </strong>
 
                     </div>
 
                 </div>
 
 
-                <button class="slider-btn prev" id="prevBtn"
-                        aria-label="Previous slide">
+                <!-- Previous Button -->
+
+                <button
+                    id="prevBtn"
+                    class="slider-btn prev"
+                    type="button"
+                    aria-label="Previous slide">
                     ❮
                 </button>
 
-                <button class="slider-btn next" id="nextBtn"
-                        aria-label="Next slide">
+
+                <!-- Next Button -->
+
+                <button
+                    id="nextBtn"
+                    class="slider-btn next"
+                    type="button"
+                    aria-label="Next slide">
                     ❯
                 </button>
 
             </div>
 
 
-            <div class="dots" id="dots"></div>
+            <!-- Slider Dots -->
+
+            <div
+                id="dots"
+                class="dots">
+            </div>
 
         </section>
 
 
         <!-- ================= FAQ ================= -->
-        <section class="section faq-section" id="faq">
+
+        <section id="faq" class="section faq-section">
 
             <div class="section-heading">
 
-                <p>NEED HELP?</p>
+                <p>
+                    NEED HELP?
+                </p>
 
-                <h2>Frequently Asked Questions</h2>
+                <h2>
+                    Frequently Asked Questions
+                </h2>
 
                 <span>
                     Click a question to see the answer.
@@ -297,23 +425,31 @@
 
             <div class="faq-container">
 
+                <!-- FAQ 1 -->
+
                 <div class="faq-item">
 
-                    <button class="faq-question"
-                            aria-expanded="false">
+                    <button
+                        class="faq-question"
+                        type="button"
+                        aria-expanded="false">
 
-                        <span>What is StudentHub?</span>
+                        <span>
+                            What is StudentHub?
+                        </span>
 
-                        <span>+</span>
+                        <span class="faq-symbol">
+                            +
+                        </span>
 
                     </button>
 
                     <div class="faq-answer">
 
                         <p>
-                            StudentHub is a digital student portal
-                            that provides useful academic and campus
-                            information in one place.
+                            StudentHub is a digital student
+                            portal that provides useful academic
+                            and campus information in one place.
                         </p>
 
                     </div>
@@ -321,22 +457,31 @@
                 </div>
 
 
+                <!-- FAQ 2 -->
+
                 <div class="faq-item">
 
-                    <button class="faq-question"
-                            aria-expanded="false">
+                    <button
+                        class="faq-question"
+                        type="button"
+                        aria-expanded="false">
 
-                        <span>Can I view university events?</span>
+                        <span>
+                            Can I view university events?
+                        </span>
 
-                        <span>+</span>
+                        <span class="faq-symbol">
+                            +
+                        </span>
 
                     </button>
 
                     <div class="faq-answer">
 
                         <p>
-                            Yes. Students can view upcoming workshops,
-                            competitions, seminars and cultural events.
+                            Yes. Students can view upcoming
+                            workshops, competitions, seminars
+                            and cultural events.
                         </p>
 
                     </div>
@@ -344,22 +489,30 @@
                 </div>
 
 
+                <!-- FAQ 3 -->
+
                 <div class="faq-item">
 
-                    <button class="faq-question"
-                            aria-expanded="false">
+                    <button
+                        class="faq-question"
+                        type="button"
+                        aria-expanded="false">
 
-                        <span>Does the website remember my theme?</span>
+                        <span>
+                            Does the website remember my theme?
+                        </span>
 
-                        <span>+</span>
+                        <span class="faq-symbol">
+                            +
+                        </span>
 
                     </button>
 
                     <div class="faq-answer">
 
                         <p>
-                            Yes. JavaScript localStorage saves your
-                            light or dark theme preference.
+                            Yes. JavaScript localStorage saves
+                            your light or dark theme preference.
                         </p>
 
                     </div>
@@ -367,14 +520,22 @@
                 </div>
 
 
+                <!-- FAQ 4 -->
+
                 <div class="faq-item">
 
-                    <button class="faq-question"
-                            aria-expanded="false">
+                    <button
+                        class="faq-question"
+                        type="button"
+                        aria-expanded="false">
 
-                        <span>Is StudentHub mobile friendly?</span>
+                        <span>
+                            Is StudentHub mobile friendly?
+                        </span>
 
-                        <span>+</span>
+                        <span class="faq-symbol">
+                            +
+                        </span>
 
                     </button>
 
@@ -395,13 +556,18 @@
 
 
         <!-- ================= CONTACT ================= -->
-        <section class="contact-section" id="contact">
+
+        <section id="contact" class="contact-section">
 
             <div>
 
-                <p>GET IN TOUCH</p>
+                <p>
+                    GET IN TOUCH
+                </p>
 
-                <h2>Have Questions?</h2>
+                <h2>
+                    Have Questions?
+                </h2>
 
                 <span>
                     Our student support team is here to help.
@@ -409,7 +575,11 @@
 
             </div>
 
-            <button class="primary-btn" id="contactBtn">
+
+            <button
+                id="contactBtn"
+                class="primary-btn"
+                type="button">
                 Contact Support
             </button>
 
@@ -419,33 +589,51 @@
 
 
     <!-- ================= MODAL ================= -->
-    <div class="modal" id="modal" role="dialog"
-         aria-modal="true"
-         aria-labelledby="modalTitle">
+
+    <div
+        id="modal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle">
 
         <div class="modal-box">
 
-            <button class="modal-close" id="closeModal"
-                    aria-label="Close popup">
+            <button
+                id="closeModal"
+                class="modal-close"
+                type="button"
+                aria-label="Close popup">
                 ×
             </button>
 
-            <div class="modal-icon">🎓</div>
+            <div class="modal-icon">
+                🎓
+            </div>
 
-            <h2 id="modalTitle">Welcome to StudentHub!</h2>
+            <h2 id="modalTitle">
+                Welcome to StudentHub!
+            </h2>
 
             <p>
-                This interactive page demonstrates JavaScript
-                DOM manipulation, events, animations and localStorage.
+                This interactive page demonstrates
+                JavaScript DOM manipulation, event handling,
+                animations and localStorage.
             </p>
 
-            <button class="primary-btn" id="modalDone">
+            <button
+                id="modalDone"
+                class="primary-btn"
+                type="button">
                 Get Started
             </button>
 
         </div>
 
     </div>
+
+
+    <!-- ================= FOOTER ================= -->
 
     <footer>
 
@@ -460,6 +648,7 @@
     </footer>
 
 
+    <!-- JAVASCRIPT FILE -->
     <script src="script.js"></script>
 
 </body>

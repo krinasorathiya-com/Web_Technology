@@ -1,9 +1,15 @@
-const menuBtn = document.getElementById("menuBtn");
-const navbar = document.getElementById("navbar");
+const menuBtn =
+    document.getElementById("menuBtn");
 
-const themeBtn = document.getElementById("themeBtn");
+const navbar =
+    document.getElementById("navbar");
 
-const notification = document.getElementById("notification");
+const themeBtn =
+    document.getElementById("themeBtn");
+
+const notification =
+    document.getElementById("notification");
+
 const closeNotification =
     document.getElementById("closeNotification");
 
@@ -37,6 +43,16 @@ const dotsContainer =
 const faqQuestions =
     document.querySelectorAll(".faq-question");
 
+const navLinks =
+    document.querySelectorAll(".navbar a");
+
+const cardButtons =
+    document.querySelectorAll(".card-btn");
+
+
+/* =====================================================
+   HAMBURGER MENU
+===================================================== */
 
 menuBtn.addEventListener("click", function () {
 
@@ -56,8 +72,7 @@ menuBtn.addEventListener("click", function () {
 });
 
 
-const navLinks =
-    document.querySelectorAll(".navbar a");
+/* Close menu after clicking a link */
 
 navLinks.forEach(function (link) {
 
@@ -76,6 +91,15 @@ navLinks.forEach(function (link) {
 
 });
 
+
+/* =====================================================
+   LIGHT / DARK MODE
+===================================================== */
+
+
+/*
+    Apply selected theme
+*/
 
 function applyTheme(theme) {
 
@@ -100,17 +124,35 @@ function applyTheme(theme) {
             "aria-label",
             "Switch to dark mode"
         );
+
     }
+
 }
 
 
+/*
+    Get saved theme.
+
+    localStorage stores:
+    "dark"
+    or
+    "light"
+*/
 
 const savedTheme =
-    localStorage.getItem("studentHubTheme");
+    localStorage.getItem(
+        "studentHubTheme"
+    );
 
-if (savedTheme) {
 
-    applyTheme(savedTheme);
+/*
+    Restore saved theme when
+    website opens.
+*/
+
+if (savedTheme === "dark") {
+
+    applyTheme("dark");
 
 } else {
 
@@ -119,33 +161,64 @@ if (savedTheme) {
 }
 
 
+/*
+    Change theme when button
+    is clicked.
+*/
 
-themeBtn.addEventListener("click", function () {
+themeBtn.addEventListener(
+    "click",
+    function () {
 
-    const isDark =
-        document.body.classList.contains("dark");
+        const isDark =
+            document.body.classList.contains("dark");
 
-    const newTheme =
-        isDark ? "light" : "dark";
 
-    applyTheme(newTheme);
+        if (isDark) {
 
-    localStorage.setItem(
-        "studentHubTheme",
-        newTheme
-    );
+            /*
+                Change to light mode
+            */
 
-});
+            applyTheme("light");
 
+            localStorage.setItem(
+                "studentHubTheme",
+                "light"
+            );
+
+        } else {
+
+            /*
+                Change to dark mode
+            */
+
+            applyTheme("dark");
+
+            localStorage.setItem(
+                "studentHubTheme",
+                "dark"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NOTIFICATION BANNER
+===================================================== */
 
 closeNotification.addEventListener(
     "click",
     function () {
 
+        notification.style.opacity = "0";
+
         notification.style.transform =
             "translateY(-100%)";
 
-        notification.style.opacity = "0";
 
         setTimeout(function () {
 
@@ -157,6 +230,13 @@ closeNotification.addEventListener(
     }
 );
 
+
+/* =====================================================
+   MODAL POPUP
+===================================================== */
+
+
+/* Open modal */
 
 function showModal() {
 
@@ -170,6 +250,8 @@ function showModal() {
 }
 
 
+/* Close modal */
+
 function hideModal() {
 
     modal.classList.remove("show");
@@ -182,15 +264,23 @@ function hideModal() {
 }
 
 
+/* Open modal button */
+
 openModal.addEventListener(
     "click",
     showModal
 );
 
+
+/* Close button */
+
 closeModal.addEventListener(
     "click",
     hideModal
 );
+
+
+/* Get Started button */
 
 modalDone.addEventListener(
     "click",
@@ -198,154 +288,223 @@ modalDone.addEventListener(
 );
 
 
+/* Close by clicking outside */
 
-modal.addEventListener("click", function (event) {
+modal.addEventListener(
+    "click",
+    function (event) {
 
-    if (event.target === modal) {
+        if (event.target === modal) {
 
-        hideModal();
+            hideModal();
 
-    }
-
-});
-
-
-document.addEventListener("keydown", function (event) {
-
-    if (
-        event.key === "Escape" &&
-        modal.classList.contains("show")
-    ) {
-
-        hideModal();
+        }
 
     }
-
-});
-
-
-faqQuestions.forEach(function (question) {
-
-    question.addEventListener(
-        "click",
-        function () {
-
-            const answer =
-                question.nextElementSibling;
-
-            const currentlyOpen =
-                question.getAttribute(
-                    "aria-expanded"
-                ) === "true";
+);
 
 
-            
+/* Close with Escape */
 
-            faqQuestions.forEach(
-                function (otherQuestion) {
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-                    if (otherQuestion !== question) {
+        if (
+            event.key === "Escape" &&
+            modal.classList.contains("show")
+        ) {
 
-                        otherQuestion.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
+            hideModal();
 
-                        otherQuestion
-                            .nextElementSibling
-                            .style.maxHeight = null;
+        }
+
+    }
+);
+
+
+/* =====================================================
+   FAQ ACCORDION
+===================================================== */
+
+faqQuestions.forEach(
+    function (question) {
+
+        question.addEventListener(
+            "click",
+            function () {
+
+                const answer =
+                    question.nextElementSibling;
+
+
+                const isOpen =
+                    question.getAttribute(
+                        "aria-expanded"
+                    ) === "true";
+
+
+                /*
+                    Close all other FAQs
+                */
+
+                faqQuestions.forEach(
+                    function (otherQuestion) {
+
+                        if (
+                            otherQuestion !== question
+                        ) {
+
+                            otherQuestion.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                            otherQuestion
+                                .nextElementSibling
+                                .style.maxHeight = null;
+
+                        }
 
                     }
-
-                }
-            );
-
-
-            if (!currentlyOpen) {
-
-                question.setAttribute(
-                    "aria-expanded",
-                    "true"
                 );
 
-                answer.style.maxHeight =
-                    answer.scrollHeight + "px";
+
+                /*
+                    Open selected FAQ
+                */
+
+                if (!isOpen) {
+
+                    question.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                    answer.style.maxHeight =
+                        answer.scrollHeight + "px";
+
+                } else {
+
+                    question.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    answer.style.maxHeight =
+                        null;
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   IMAGE / CONTENT SLIDER
+===================================================== */
+
+let currentSlide = 0;
+
+
+/*
+    Create dots dynamically
+    using DOM manipulation.
+*/
+
+slides.forEach(
+    function (slide, index) {
+
+        const dot =
+            document.createElement("button");
+
+        dot.classList.add("dot");
+
+        dot.setAttribute(
+            "type",
+            "button"
+        );
+
+        dot.setAttribute(
+            "aria-label",
+            "Go to slide " + (index + 1)
+        );
+
+
+        dot.addEventListener(
+            "click",
+            function () {
+
+                currentSlide = index;
+
+                showSlide(currentSlide);
+
+            }
+        );
+
+
+        dotsContainer.appendChild(dot);
+
+    }
+);
+
+
+/*
+    Select newly created dots
+*/
+
+const dots =
+    document.querySelectorAll(".dot");
+
+
+/*
+    Display selected slide
+*/
+
+function showSlide(index) {
+
+    slides.forEach(
+        function (slide, i) {
+
+            if (i === index) {
+
+                slide.classList.add("active");
 
             } else {
 
-                question.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                answer.style.maxHeight = null;
+                slide.classList.remove("active");
 
             }
 
         }
     );
 
-});
 
+    dots.forEach(
+        function (dot, i) {
 
-let currentSlide = 0;
+            if (i === index) {
 
+                dot.classList.add("active");
 
-slides.forEach(function (_, index) {
+            } else {
 
-    const dot =
-        document.createElement("button");
+                dot.classList.remove("active");
 
-    dot.classList.add("dot");
-
-    dot.setAttribute(
-        "aria-label",
-        "Go to slide " + (index + 1)
-    );
-
-    dot.addEventListener(
-        "click",
-        function () {
-
-            currentSlide = index;
-
-            showSlide(currentSlide);
+            }
 
         }
     );
 
-    dotsContainer.appendChild(dot);
-
-});
-
-
-const dots =
-    document.querySelectorAll(".dot");
-
-
-function showSlide(index) {
-
-    slides.forEach(function (slide, i) {
-
-        slide.classList.toggle(
-            "active",
-            i === index
-        );
-
-    });
-
-
-    dots.forEach(function (dot, i) {
-
-        dot.classList.toggle(
-            "active",
-            i === index
-        );
-
-    });
-
 }
 
+
+/*
+    Next button
+*/
 
 nextBtn.addEventListener(
     "click",
@@ -353,7 +512,9 @@ nextBtn.addEventListener(
 
         currentSlide++;
 
-        if (currentSlide >= slides.length) {
+        if (
+            currentSlide >= slides.length
+        ) {
 
             currentSlide = 0;
 
@@ -364,6 +525,10 @@ nextBtn.addEventListener(
     }
 );
 
+
+/*
+    Previous button
+*/
 
 prevBtn.addEventListener(
     "click",
@@ -384,30 +549,49 @@ prevBtn.addEventListener(
 );
 
 
-setInterval(function () {
+/*
+    Automatic slider
 
-    currentSlide++;
+    Changes every 5 seconds.
+*/
 
-    if (currentSlide >= slides.length) {
+setInterval(
+    function () {
 
-        currentSlide = 0;
+        currentSlide++;
 
-    }
+        if (
+            currentSlide >= slides.length
+        ) {
 
-    showSlide(currentSlide);
+            currentSlide = 0;
 
-}, 5000);
+        }
 
+        showSlide(currentSlide);
+
+    },
+    5000
+);
+
+
+/*
+    Show first slide
+*/
 
 showSlide(currentSlide);
 
+
+/* =====================================================
+   CONTACT BUTTON
+===================================================== */
 
 contactBtn.addEventListener(
     "click",
     function () {
 
         alert(
-            "Thank you for contacting StudentHub! " +
+            "Thank you for contacting StudentHub!\n\n" +
             "Our support team will contact you soon."
         );
 
@@ -415,41 +599,111 @@ contactBtn.addEventListener(
 );
 
 
-const cardButtons =
-    document.querySelectorAll(".card-btn");
+/* =====================================================
+   FEATURE CARD BUTTONS
+===================================================== */
 
-cardButtons.forEach(function (button) {
+cardButtons.forEach(
+    function (button) {
 
-    button.addEventListener(
-        "click",
-        function () {
+        button.addEventListener(
+            "click",
+            function () {
 
-            const card =
-                button.closest(".feature-card");
+                const card =
+                    button.closest(".feature-card");
 
-            const title =
-                card.querySelector("h3").textContent;
+                const title =
+                    card.querySelector("h3")
+                        .textContent;
 
-            alert(
-                "You selected the " +
-                title +
-                " feature."
-            );
+                alert(
+                    "You selected the " +
+                    title +
+                    " feature."
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   KEYBOARD ACCESSIBILITY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        /*
+            Left arrow = previous slide
+        */
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            currentSlide--;
+
+            if (currentSlide < 0) {
+
+                currentSlide =
+                    slides.length - 1;
+
+            }
+
+            showSlide(currentSlide);
 
         }
-    );
 
-});
 
+        /*
+            Right arrow = next slide
+        */
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            currentSlide++;
+
+            if (
+                currentSlide >= slides.length
+            ) {
+
+                currentSlide = 0;
+
+            }
+
+            showSlide(currentSlide);
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CONSOLE TEST
+===================================================== */
 
 console.log(
-    "StudentHub Practical 4 JavaScript loaded successfully!"
+    "StudentHub Practical 4 loaded successfully!"
 );
 
 console.log(
-    "DOM elements selected:",
-    slides.length,
-    "slides and",
-    faqQuestions.length,
-    "FAQ questions."
+    "Dark mode + localStorage enabled."
+);
+
+console.log(
+    "Slides:",
+    slides.length
+);
+
+console.log(
+    "FAQ Questions:",
+    faqQuestions.length
 );
