@@ -9,10 +9,6 @@ const courseInput = document.getElementById("course");
 const yearInput = document.getElementById("year");
 const termsInput = document.getElementById("terms");
 
-const strengthBar = document.getElementById("strengthBar");
-const strengthText = document.getElementById("strengthText");
-const successMessage = document.getElementById("successMessage");
-
 
 // ================= REGULAR EXPRESSIONS =================
 
@@ -28,217 +24,154 @@ const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$!%&*]).{8,}$/;
 
 
-// ================= ERROR FUNCTION =================
+// ================= NAME =================
 
-function showError(input, errorId, message) {
+function validateName(showAlert = true) {
 
-    input.classList.remove("valid");
-    input.classList.add("invalid");
-
-    document.getElementById(errorId).textContent = message;
-
-    alert(message);
-}
-
-
-// ================= VALID FUNCTION =================
-
-function showValid(input, errorId) {
-
-    input.classList.remove("invalid");
-    input.classList.add("valid");
-
-    document.getElementById(errorId).textContent = "";
-}
-
-
-// ================= NAME VALIDATION =================
-
-function validateName() {
-
-    const value = nameInput.value.trim();
+    let value = nameInput.value.trim();
 
     if (value === "") {
 
-        showError(
-            nameInput,
-            "nameError",
-            "Please enter your full name."
-        );
+        nameInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Please enter your full name.");
+        }
 
         return false;
     }
 
     if (!nameRegex.test(value)) {
 
-        showError(
-            nameInput,
-            "nameError",
-            "Invalid name! Name should contain only letters and spaces."
-        );
+        nameInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert(
+                "Invalid Name!\n\nOnly letters and spaces are allowed."
+            );
+        }
 
         return false;
     }
 
-    showValid(nameInput, "nameError");
+    nameInput.classList.remove("invalid");
+    nameInput.classList.add("valid");
 
     return true;
 }
 
 
-// ================= EMAIL VALIDATION =================
+// ================= EMAIL =================
 
-function validateEmail() {
+function validateEmail(showAlert = true) {
 
-    const value = emailInput.value.trim();
+    let value = emailInput.value.trim();
 
     if (value === "") {
 
-        showError(
-            emailInput,
-            "emailError",
-            "Please enter your email address."
-        );
+        emailInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Please enter your email address.");
+        }
 
         return false;
     }
 
     if (!emailRegex.test(value)) {
 
-        showError(
-            emailInput,
-            "emailError",
-            "Invalid email! Please enter a valid email address."
-        );
+        emailInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert(
+                "Invalid Email!\n\nExample of valid email:\nstudent@gmail.com"
+            );
+        }
 
         return false;
     }
 
-    showValid(emailInput, "emailError");
+    emailInput.classList.remove("invalid");
+    emailInput.classList.add("valid");
 
     return true;
 }
 
 
-// ================= MOBILE VALIDATION =================
+// ================= MOBILE =================
 
-function validateMobile() {
+function validateMobile(showAlert = true) {
 
-    const value = mobileInput.value.trim();
+    let value = mobileInput.value.trim();
 
     if (value === "") {
 
-        showError(
-            mobileInput,
-            "mobileError",
-            "Please enter your mobile number."
-        );
+        mobileInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Please enter your mobile number.");
+        }
 
         return false;
     }
 
     if (!mobileRegex.test(value)) {
 
-        showError(
-            mobileInput,
-            "mobileError",
-            "Invalid mobile number! Enter a valid 10-digit number starting with 6-9."
-        );
+        mobileInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert(
+                "Invalid Mobile Number!\n\nEnter a valid 10-digit number starting with 6, 7, 8 or 9."
+            );
+        }
 
         return false;
     }
 
-    showValid(mobileInput, "mobileError");
+    mobileInput.classList.remove("invalid");
+    mobileInput.classList.add("valid");
 
     return true;
 }
 
 
-// ================= PASSWORD STRENGTH =================
+// ================= PASSWORD =================
 
-function checkPasswordStrength() {
+function validatePassword(showAlert = true) {
 
-    const password = passwordInput.value;
-
-    let strength = 0;
-
-    if (password.length >= 8) {
-        strength++;
-    }
-
-    if (/[a-z]/.test(password)) {
-        strength++;
-    }
-
-    if (/[A-Z]/.test(password)) {
-        strength++;
-    }
-
-    if (/[0-9]/.test(password)) {
-        strength++;
-    }
-
-    if (/[@#$!%&*]/.test(password)) {
-        strength++;
-    }
-
-    if (password.length === 0) {
-
-        strengthBar.style.width = "0%";
-        strengthText.textContent = "Password strength";
-
-        return;
-    }
-
-    if (strength <= 2) {
-
-        strengthBar.style.width = "30%";
-        strengthText.textContent = "Weak password";
-
-    } else if (strength === 3 || strength === 4) {
-
-        strengthBar.style.width = "70%";
-        strengthText.textContent = "Medium password";
-
-    } else {
-
-        strengthBar.style.width = "100%";
-        strengthText.textContent = "Strong password";
-    }
-}
-
-
-// ================= PASSWORD VALIDATION =================
-
-function validatePassword() {
-
-    const value = passwordInput.value;
-
-    checkPasswordStrength();
+    let value = passwordInput.value;
 
     if (value === "") {
 
-        showError(
-            passwordInput,
-            "passwordError",
-            "Please enter a password."
-        );
+        passwordInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Please enter your password.");
+        }
 
         return false;
     }
 
     if (!passwordRegex.test(value)) {
 
-        showError(
-            passwordInput,
-            "passwordError",
-            "Invalid password! Password must contain at least 8 characters, uppercase letter, lowercase letter, number and special character."
-        );
+        passwordInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert(
+                "Invalid Password!\n\nPassword must contain:\n" +
+                "• Minimum 8 characters\n" +
+                "• At least one uppercase letter\n" +
+                "• At least one lowercase letter\n" +
+                "• At least one number\n" +
+                "• At least one special character (@ # $ ! % & *)"
+            );
+        }
 
         return false;
     }
 
-    showValid(passwordInput, "passwordError");
+    passwordInput.classList.remove("invalid");
+    passwordInput.classList.add("valid");
 
     return true;
 }
@@ -246,39 +179,35 @@ function validatePassword() {
 
 // ================= CONFIRM PASSWORD =================
 
-function validateConfirmPassword() {
+function validateConfirmPassword(showAlert = true) {
 
-    const password = passwordInput.value;
-
-    const confirmPassword =
-        confirmPasswordInput.value;
+    let password = passwordInput.value;
+    let confirmPassword = confirmPasswordInput.value;
 
     if (confirmPassword === "") {
 
-        showError(
-            confirmPasswordInput,
-            "confirmPasswordError",
-            "Please confirm your password."
-        );
+        confirmPasswordInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Please confirm your password.");
+        }
 
         return false;
     }
 
     if (password !== confirmPassword) {
 
-        showError(
-            confirmPasswordInput,
-            "confirmPasswordError",
-            "Passwords do not match!"
-        );
+        confirmPasswordInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Passwords do not match!");
+        }
 
         return false;
     }
 
-    showValid(
-        confirmPasswordInput,
-        "confirmPasswordError"
-    );
+    confirmPasswordInput.classList.remove("invalid");
+    confirmPasswordInput.classList.add("valid");
 
     return true;
 }
@@ -286,20 +215,21 @@ function validateConfirmPassword() {
 
 // ================= COURSE =================
 
-function validateCourse() {
+function validateCourse(showAlert = true) {
 
     if (courseInput.value === "") {
 
-        showError(
-            courseInput,
-            "courseError",
-            "Please select your course."
-        );
+        courseInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Please select your course.");
+        }
 
         return false;
     }
 
-    showValid(courseInput, "courseError");
+    courseInput.classList.remove("invalid");
+    courseInput.classList.add("valid");
 
     return true;
 }
@@ -307,20 +237,21 @@ function validateCourse() {
 
 // ================= YEAR =================
 
-function validateYear() {
+function validateYear(showAlert = true) {
 
     if (yearInput.value === "") {
 
-        showError(
-            yearInput,
-            "yearError",
-            "Please select your year."
-        );
+        yearInput.classList.add("invalid");
+
+        if (showAlert) {
+            alert("Please select your year.");
+        }
 
         return false;
     }
 
-    showValid(yearInput, "yearError");
+    yearInput.classList.remove("invalid");
+    yearInput.classList.add("valid");
 
     return true;
 }
@@ -328,27 +259,21 @@ function validateYear() {
 
 // ================= GENDER =================
 
-function validateGender() {
+function validateGender(showAlert = true) {
 
-    const gender =
+    let gender =
         document.querySelector(
             'input[name="gender"]:checked'
         );
 
-    const error =
-        document.getElementById("genderError");
-
     if (!gender) {
 
-        error.textContent =
-            "Please select your gender.";
-
-        alert("Please select your gender.");
+        if (showAlert) {
+            alert("Please select your gender.");
+        }
 
         return false;
     }
-
-    error.textContent = "";
 
     return true;
 }
@@ -356,86 +281,127 @@ function validateGender() {
 
 // ================= TERMS =================
 
-function validateTerms() {
+function validateTerms(showAlert = true) {
 
     if (!termsInput.checked) {
 
-        document.getElementById("termsError").textContent =
-            "Please accept the Terms and Conditions.";
-
-        alert("Please accept the Terms and Conditions.");
+        if (showAlert) {
+            alert(
+                "Please accept the Terms and Conditions."
+            );
+        }
 
         return false;
     }
-
-    document.getElementById("termsError").textContent = "";
 
     return true;
 }
 
 
-// ================= REAL-TIME PASSWORD STRENGTH =================
+// =====================================================
+// ALERT WHEN USER LEAVES THE INPUT FIELD
+// =====================================================
 
-passwordInput.addEventListener(
-    "input",
-    checkPasswordStrength
-);
+nameInput.addEventListener("blur", function () {
+    validateName(true);
+});
+
+emailInput.addEventListener("blur", function () {
+    validateEmail(true);
+});
+
+mobileInput.addEventListener("blur", function () {
+    validateMobile(true);
+});
+
+passwordInput.addEventListener("blur", function () {
+    validatePassword(true);
+});
+
+confirmPasswordInput.addEventListener("blur", function () {
+    validateConfirmPassword(true);
+});
+
+courseInput.addEventListener("change", function () {
+    validateCourse(true);
+});
+
+yearInput.addEventListener("change", function () {
+    validateYear(true);
+});
+
+document
+    .querySelectorAll('input[name="gender"]')
+    .forEach(function (radio) {
+
+        radio.addEventListener("change", function () {
+            validateGender(false);
+        });
+
+    });
+
+termsInput.addEventListener("change", function () {
+    validateTerms(false);
+});
 
 
-// ================= FORM SUBMIT =================
+// =====================================================
+// FORM SUBMIT
+// =====================================================
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
-    successMessage.style.display = "none";
 
-    /*
-       Validate one by one.
-       If something is wrong,
-       alert() will be displayed.
-    */
-
-    if (!validateName()) {
+    if (!validateName(true)) {
         nameInput.focus();
         return;
     }
 
-    if (!validateEmail()) {
+
+    if (!validateEmail(true)) {
         emailInput.focus();
         return;
     }
 
-    if (!validateMobile()) {
+
+    if (!validateMobile(true)) {
         mobileInput.focus();
         return;
     }
 
-    if (!validatePassword()) {
+
+    if (!validatePassword(true)) {
         passwordInput.focus();
         return;
     }
 
-    if (!validateConfirmPassword()) {
+
+    if (!validateConfirmPassword(true)) {
         confirmPasswordInput.focus();
         return;
     }
 
-    if (!validateCourse()) {
+
+    if (!validateCourse(true)) {
         courseInput.focus();
         return;
     }
 
-    if (!validateYear()) {
+
+    if (!validateYear(true)) {
         yearInput.focus();
         return;
     }
 
-    if (!validateGender()) {
+
+    if (!validateGender(true)) {
         return;
     }
 
-    if (!validateTerms()) {
+
+    if (!validateTerms(true)) {
         termsInput.focus();
         return;
     }
@@ -445,25 +411,10 @@ form.addEventListener("submit", function(event) {
 
     alert("Registration Successful!");
 
-    successMessage.textContent =
-        "Registration successful! Your details have been submitted.";
+    document.getElementById("successMessage").textContent =
+        "Registration successful!";
 
-    successMessage.style.display = "block";
-
-    form.reset();
-
-    document
-        .querySelectorAll("input, select")
-        .forEach(function(element) {
-
-            element.classList.remove("valid");
-            element.classList.remove("invalid");
-
-        });
-
-    strengthBar.style.width = "0%";
-
-    strengthText.textContent =
-        "Password strength";
+    document.getElementById("successMessage").style.display =
+        "block";
 
 });
