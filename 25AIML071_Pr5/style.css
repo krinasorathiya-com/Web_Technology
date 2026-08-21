@@ -1,218 +1,140 @@
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 15px;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 30px;
 }
 
 .container {
-    width: 100%;
-    max-width: 600px;
-}
-
-.form-card {
+    width: 500px;
+    max-width: 100%;
+    margin: auto;
     background: white;
-    padding: 35px;
-    border-radius: 18px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #aaa;
 }
 
-h1 {
+h2 {
     text-align: center;
     color: #333;
-    margin-bottom: 8px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #777;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
-label,
-legend {
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-.form-group label {
+label {
     display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="password"],
+input,
 select {
     width: 100%;
-    padding: 13px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
     font-size: 15px;
-    outline: none;
-    transition: 0.3s;
-    background: white;
 }
 
 input:focus,
 select:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+    outline: none;
+    border-color: #007bff;
 }
 
-input.valid,
-select.valid {
-    border-color: #28a745;
+/* Valid input */
+
+.valid {
+    border-color: green !important;
 }
 
-input.invalid,
-select.invalid {
-    border-color: #dc3545;
+/* Invalid input */
+
+.invalid {
+    border-color: red !important;
+}
+
+/* Error message */
+
+span {
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
 }
 
 .error {
-    display: block;
-    color: #dc3545;
-    font-size: 13px;
-    margin-top: 5px;
-    min-height: 18px;
+    color: red;
 }
 
-/* Password strength */
-
-.strength-container {
-    width: 100%;
-    height: 7px;
-    background: #ddd;
-    border-radius: 10px;
-    margin-top: 8px;
-    overflow: hidden;
-}
-
-#strengthBar {
-    width: 0%;
-    height: 100%;
-    transition: 0.3s;
-}
-
-.strength-text {
-    display: block;
-    margin-top: 5px;
-    font-size: 13px;
-    color: #666;
+.success {
+    color: green;
 }
 
 /* Gender */
 
-.gender-group {
-    border: none;
-    margin-bottom: 20px;
-}
-
-.radio-options {
+.gender {
     display: flex;
-    gap: 25px;
-    margin-top: 8px;
-    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.radio-options label {
+.gender label {
     font-weight: normal;
-    cursor: pointer;
 }
 
-.radio-options input {
-    margin-right: 5px;
+.gender input {
+    width: auto;
 }
 
 /* Terms */
 
-.terms-group {
-    margin-bottom: 20px;
-}
-
-.checkbox-label {
+.terms {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
-    font-weight: normal;
-    cursor: pointer;
 }
 
-.checkbox-label input {
-    margin-top: 3px;
+.terms input {
+    width: auto;
 }
 
-.checkbox-label a {
-    color: #667eea;
-    text-decoration: none;
-}
+/* Password strength */
 
-.checkbox-label a:hover {
-    text-decoration: underline;
-}
-
-/* Submit button */
-
-.submit-btn {
+.strength {
     width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    height: 7px;
+    background: #ddd;
+    margin-top: 7px;
+    border-radius: 5px;
 }
 
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+#strengthBar {
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+    background: green;
 }
 
-.submit-btn:focus {
-    outline: 3px solid #333;
-    outline-offset: 2px;
-}
+/* Button */
 
-/* Success */
-
-.success-message {
-    margin-top: 20px;
+button {
+    width: 100%;
     padding: 12px;
-    border-radius: 8px;
-    text-align: center;
-    color: #155724;
-    background: #d4edda;
-    display: none;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .form-card {
-        padding: 25px 20px;
-    }
-
-    .radio-options {
-        flex-direction: column;
-        gap: 10px;
-    }
+button:hover {
+    background: #0056b3;
 }
