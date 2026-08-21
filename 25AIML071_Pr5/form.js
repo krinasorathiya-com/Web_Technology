@@ -1,6 +1,4 @@
-const form = document.getElementById("registrationForm");
-
-const nameInput = document.getElementById("name");
+const name = document.getElementById("name");
 const email = document.getElementById("email");
 const mobile = document.getElementById("mobile");
 const password = document.getElementById("password");
@@ -10,461 +8,401 @@ const year = document.getElementById("year");
 const terms = document.getElementById("terms");
 
 
-// Show Error
-function showError(input, errorId, message) {
-    input.classList.add("invalid");
-    input.classList.remove("valid");
+// ERROR FUNCTION
+function error(input, message, errorId) {
 
-    document.getElementById(errorId).textContent = message;
-    document.getElementById(errorId).className = "error";
+    input.classList.add("error-input");
+    input.classList.remove("valid-input");
+
+    const errorMessage = document.getElementById(errorId);
+
+    errorMessage.innerHTML = "❌ " + message;
+    errorMessage.className = "error";
 }
 
 
-// Show Success
-function showSuccess(input, errorId, message) {
-    input.classList.remove("invalid");
-    input.classList.add("valid");
+// SUCCESS FUNCTION
+function success(input, message, errorId) {
 
-    document.getElementById(errorId).textContent = message;
-    document.getElementById(errorId).className = "success";
+    input.classList.remove("error-input");
+    input.classList.add("valid-input");
+
+    const errorMessage = document.getElementById(errorId);
+
+    errorMessage.innerHTML = "✓ " + message;
+    errorMessage.className = "success";
 }
 
 
-// 1. NAME VALIDATION
-function validateName() {
+// NAME
+name.addEventListener("input", function () {
 
-    const value = nameInput.value.trim();
+    const value = name.value;
 
-    const pattern = /^[A-Za-z ]{2,50}$/;
-
-    if (value === "") {
-        showError(
-            nameInput,
-            "nameError",
-            "Name is required."
-        );
-        return false;
+    if (value.length === 0) {
+        name.classList.remove("error-input", "valid-input");
+        document.getElementById("nameError").innerHTML = "";
     }
 
-    if (!pattern.test(value)) {
-        showError(
-            nameInput,
-            "nameError",
-            "Name must contain only letters."
+    else if (!/^[A-Za-z ]+$/.test(value)) {
+
+        error(
+            name,
+            "Name must contain only letters.",
+            "nameError"
         );
-        return false;
+
     }
 
-    showSuccess(
-        nameInput,
-        "nameError",
-        "✓ Valid name"
-    );
+    else if (value.trim().length < 2) {
 
-    return true;
-}
+        error(
+            name,
+            "Name must have at least 2 characters.",
+            "nameError"
+        );
+
+    }
+
+    else {
+
+        success(
+            name,
+            "Valid name",
+            "nameError"
+        );
+
+    }
+
+});
 
 
-// 2. EMAIL VALIDATION
-function validateEmail() {
+// EMAIL
+email.addEventListener("input", function () {
 
-    const value = email.value.trim();
+    const value = email.value;
 
-    const pattern =
-        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (value.length === 0) {
 
-    if (value === "") {
-        showError(
+        email.classList.remove("error-input", "valid-input");
+        document.getElementById("emailError").innerHTML = "";
+
+    }
+
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+
+        error(
             email,
-            "emailError",
-            "Email is required."
+            "Enter a valid email address.",
+            "emailError"
         );
-        return false;
+
     }
 
-    if (!pattern.test(value)) {
-        showError(
+    else {
+
+        success(
             email,
-            "emailError",
-            "Enter a valid email address."
+            "Valid email",
+            "emailError"
         );
-        return false;
+
     }
 
-    showSuccess(
-        email,
-        "emailError",
-        "✓ Valid email"
-    );
-
-    return true;
-}
+});
 
 
-// 3. MOBILE VALIDATION
-function validateMobile() {
+// MOBILE
+mobile.addEventListener("input", function () {
 
-    const value = mobile.value.trim();
+    const value = mobile.value;
 
-    if (value === "") {
-        showError(
+    if (value.length === 0) {
+
+        mobile.classList.remove("error-input", "valid-input");
+        document.getElementById("mobileError").innerHTML = "";
+
+    }
+
+    else if (!/^[0-9]+$/.test(value)) {
+
+        error(
             mobile,
-            "mobileError",
-            "Mobile number is required."
+            "Mobile number must contain only numbers.",
+            "mobileError"
         );
-        return false;
+
     }
 
-    if (!/^[0-9]+$/.test(value)) {
-        showError(
+    else if (value.length < 10) {
+
+        error(
             mobile,
-            "mobileError",
-            "Mobile number must contain only numbers."
+            "Mobile number must contain 10 digits.",
+            "mobileError"
         );
-        return false;
+
     }
 
-    if (!/^[6-9][0-9]{9}$/.test(value)) {
-        showError(
+    else if (!/^[6-9][0-9]{9}$/.test(value)) {
+
+        error(
             mobile,
-            "mobileError",
-            "Enter a valid 10 digit mobile number."
+            "Mobile number must start with 6, 7, 8 or 9.",
+            "mobileError"
         );
-        return false;
+
     }
 
-    showSuccess(
-        mobile,
-        "mobileError",
-        "✓ Valid mobile number"
-    );
+    else {
 
-    return true;
-}
+        success(
+            mobile,
+            "Valid mobile number",
+            "mobileError"
+        );
+
+    }
+
+});
 
 
-// 4. PASSWORD VALIDATION
-function validatePassword() {
+// PASSWORD
+password.addEventListener("input", function () {
 
     const value = password.value;
 
-    const pattern =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$!%]).{8,}$/;
+    if (value.length === 0) {
 
-    if (value === "") {
+        password.classList.remove("error-input", "valid-input");
+        document.getElementById("passwordError").innerHTML = "";
 
-        showError(
+    }
+
+    else if (value.length < 8) {
+
+        error(
             password,
-            "passwordError",
-            "Password is required."
+            "Password must contain at least 8 characters.",
+            "passwordError"
         );
 
-        updateStrength(0);
-
-        return false;
     }
 
-    if (!pattern.test(value)) {
+    else if (!/[A-Z]/.test(value)) {
 
-        showError(
+        error(
             password,
-            "passwordError",
-            "Use 8 characters, uppercase, lowercase, number and special character."
+            "Add at least one uppercase letter.",
+            "passwordError"
         );
 
-        updateStrength(value.length);
-
-        return false;
     }
 
-    showSuccess(
-        password,
-        "passwordError",
-        "✓ Strong password"
-    );
+    else if (!/[a-z]/.test(value)) {
 
-    updateStrength(value.length);
+        error(
+            password,
+            "Add at least one lowercase letter.",
+            "passwordError"
+        );
 
-    return true;
-}
-
-
-// PASSWORD STRENGTH
-function updateStrength(length) {
-
-    const bar = document.getElementById("strengthBar");
-
-    if (length === 0) {
-        bar.style.width = "0%";
     }
-    else if (length < 5) {
-        bar.style.width = "30%";
+
+    else if (!/[0-9]/.test(value)) {
+
+        error(
+            password,
+            "Add at least one number.",
+            "passwordError"
+        );
+
     }
-    else if (length < 8) {
-        bar.style.width = "60%";
+
+    else if (!/[@#$!%]/.test(value)) {
+
+        error(
+            password,
+            "Add at least one special character.",
+            "passwordError"
+        );
+
     }
+
     else {
-        bar.style.width = "100%";
-    }
-}
 
-
-// 5. CONFIRM PASSWORD
-function validateConfirmPassword() {
-
-    if (confirmPassword.value === "") {
-
-        showError(
-            confirmPassword,
-            "confirmPasswordError",
-            "Please confirm your password."
+        success(
+            password,
+            "Strong password",
+            "passwordError"
         );
 
-        return false;
     }
 
-    if (confirmPassword.value !== password.value) {
+});
 
-        showError(
-            confirmPassword,
-            "confirmPasswordError",
-            "Passwords do not match."
+
+// CONFIRM PASSWORD
+confirmPassword.addEventListener("input", function () {
+
+    if (confirmPassword.value.length === 0) {
+
+        confirmPassword.classList.remove(
+            "error-input",
+            "valid-input"
         );
 
-        return false;
+        document.getElementById("confirmError").innerHTML = "";
+
     }
 
-    showSuccess(
-        confirmPassword,
-        "confirmPasswordError",
-        "✓ Passwords match"
-    );
+    else if (confirmPassword.value !== password.value) {
 
-    return true;
-}
+        error(
+            confirmPassword,
+            "Passwords do not match.",
+            "confirmError"
+        );
+
+    }
+
+    else {
+
+        success(
+            confirmPassword,
+            "Passwords match",
+            "confirmError"
+        );
+
+    }
+
+});
 
 
-// 6. COURSE
-function validateCourse() {
+// COURSE
+course.addEventListener("change", function () {
 
     if (course.value === "") {
 
-        showError(
+        error(
             course,
-            "courseError",
-            "Please select a course."
+            "Please select a course.",
+            "courseError"
         );
 
-        return false;
     }
 
-    showSuccess(
-        course,
-        "courseError",
-        "✓ Course selected"
-    );
+    else {
 
-    return true;
-}
+        success(
+            course,
+            "Course selected",
+            "courseError"
+        );
+
+    }
+
+});
 
 
-// 7. YEAR
-function validateYear() {
+// YEAR
+year.addEventListener("change", function () {
 
     if (year.value === "") {
 
-        showError(
+        error(
             year,
-            "yearError",
-            "Please select your year."
+            "Please select your year.",
+            "yearError"
         );
 
-        return false;
     }
 
-    showSuccess(
-        year,
-        "yearError",
-        "✓ Year selected"
-    );
+    else {
 
-    return true;
-}
-
-
-// 8. GENDER
-function validateGender() {
-
-    const gender =
-        document.querySelector(
-            'input[name="gender"]:checked'
+        success(
+            year,
+            "Year selected",
+            "yearError"
         );
 
-    const error =
-        document.getElementById("genderError");
-
-    if (!gender) {
-
-        error.textContent =
-            "Please select your gender.";
-
-        error.className = "error";
-
-        return false;
     }
 
-    error.textContent =
-        "✓ Gender selected";
-
-    error.className = "success";
-
-    return true;
-}
+});
 
 
-// 9. TERMS
-function validateTerms() {
-
-    const error =
-        document.getElementById("termsError");
-
-    if (!terms.checked) {
-
-        error.textContent =
-            "Please accept Terms and Conditions.";
-
-        error.className = "error";
-
-        return false;
-    }
-
-    error.textContent =
-        "✓ Terms accepted";
-
-    error.className = "success";
-
-    return true;
-}
-
-
-// REAL-TIME VALIDATION
-
-nameInput.addEventListener(
-    "input",
-    validateName
-);
-
-email.addEventListener(
-    "input",
-    validateEmail
-);
-
-mobile.addEventListener(
-    "input",
-    validateMobile
-);
-
-password.addEventListener(
-    "input",
-    function () {
-
-        validatePassword();
-
-        if (confirmPassword.value !== "") {
-            validateConfirmPassword();
-        }
-
-    }
-);
-
-confirmPassword.addEventListener(
-    "input",
-    validateConfirmPassword
-);
-
-course.addEventListener(
-    "change",
-    validateCourse
-);
-
-year.addEventListener(
-    "change",
-    validateYear
-);
-
+// GENDER
 document.querySelectorAll(
     'input[name="gender"]'
 ).forEach(function (radio) {
 
-    radio.addEventListener(
-        "change",
-        validateGender
-    );
+    radio.addEventListener("change", function () {
+
+        document.getElementById("genderError").innerHTML =
+            "✓ Gender selected";
+
+        document.getElementById("genderError").className =
+            "success";
+
+    });
 
 });
 
-terms.addEventListener(
-    "change",
-    validateTerms
-);
+
+// TERMS
+terms.addEventListener("change", function () {
+
+    if (!terms.checked) {
+
+        document.getElementById("termsError").innerHTML =
+            "❌ Please accept Terms and Conditions.";
+
+        document.getElementById("termsError").className =
+            "error";
+
+    }
+
+    else {
+
+        document.getElementById("termsError").innerHTML =
+            "✓ Terms accepted";
+
+        document.getElementById("termsError").className =
+            "success";
+
+    }
+
+});
 
 
-// FORM SUBMIT
-
-form.addEventListener(
+// SUBMIT
+document.getElementById("form").addEventListener(
     "submit",
     function (event) {
 
         event.preventDefault();
 
-        const validName = validateName();
-        const validEmail = validateEmail();
-        const validMobile = validateMobile();
-        const validPassword = validatePassword();
-        const validConfirmPassword =
-            validateConfirmPassword();
-
-        const validCourse = validateCourse();
-        const validYear = validateYear();
-        const validGender = validateGender();
-        const validTerms = validateTerms();
-
         if (
-            validName &&
-            validEmail &&
-            validMobile &&
-            validPassword &&
-            validConfirmPassword &&
-            validCourse &&
-            validYear &&
-            validGender &&
-            validTerms
+            document.querySelectorAll(".error").length === 0 &&
+            name.value !== "" &&
+            email.value !== "" &&
+            mobile.value !== "" &&
+            password.value !== "" &&
+            confirmPassword.value !== "" &&
+            course.value !== "" &&
+            year.value !== "" &&
+            document.querySelector(
+                'input[name="gender"]:checked'
+            ) &&
+            terms.checked
         ) {
 
             alert("Registration Successful!");
 
-            form.reset();
+        } else {
 
-            document.querySelectorAll(
-                "input, select"
-            ).forEach(function (element) {
+            alert("Please correct all errors.");
 
-                element.classList.remove("valid");
-                element.classList.remove("invalid");
-
-            });
-
-            document.querySelectorAll(
-                "span"
-            ).forEach(function (element) {
-
-                element.textContent = "";
-
-            });
-
-            document.getElementById(
-                "strengthBar"
-            ).style.width = "0%";
         }
 
     }
