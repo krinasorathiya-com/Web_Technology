@@ -1,99 +1,429 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub | Events</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .controls {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .controls label {
+            margin-right: 5px;
+        }
+
+        input,
+        select,
+        button {
+            padding: 8px;
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .event {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .event h3 {
+            margin-top: 0;
+        }
+
+        .event p {
+            margin: 5px 0;
+        }
+
+        .pagination {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .pagination button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        #pageInfo {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .message {
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin-top: 15px;
+        }
+
+        footer {
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
-<a href="#main-content">Skip to main content</a>
+    <a href="#main-content">Skip to main content</a>
 
-<header>
-    <h1>StudentHub</h1>
+    <header>
+        <h1>StudentHub</h1>
 
-    <nav aria-label="Primary navigation">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="events.html" aria-current="page">Events</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-    </nav>
-</header>
+        <nav aria-label="Primary navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html" aria-current="page">Events</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<main id="main-content">
+    <main id="main-content">
 
-    <nav aria-label="Breadcrumb">
-        <ol>
-            <li><a href="index.html">Home</a></li>
-            <li aria-current="page">Events</li>
-        </ol>
-    </nav>
+        <nav aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li aria-current="page">Events</li>
+            </ol>
+        </nav>
 
-    <section>
-        <h2>Upcoming Events</h2>
+        <section>
+            <h2>Upcoming Events</h2>
 
-        <article>
-            <h3>AI and Machine Learning Workshop</h3>
+            <div class="controls">
 
-            <p>
-                Date:
-                <time datetime="2026-08-15">15 August 2026</time>
-            </p>
+                <label for="search">Search Event:</label>
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search event"
+                    aria-label="Search event"
+                >
 
-            <p>
-                Learn the fundamentals of artificial intelligence
-                and machine learning.
-            </p>
+                <label for="category">Category:</label>
 
-            <p>
-                <a href="register.html">Register for workshop</a>
-            </p>
-        </article>
+                <select
+                    id="category"
+                    aria-label="Filter events by category"
+                >
+                    <option value="All">All</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Seminar">Seminar</option>
+                    <option value="Competition">Competition</option>
+                </select>
 
-        <article>
-            <h3>Student Innovation Competition</h3>
+                <button type="button" onclick="sortEvents()">
+                    Sort by Name
+                </button>
 
-            <p>
-                Date:
-                <time datetime="2026-08-22">22 August 2026</time>
-            </p>
+            </div>
 
-            <p>
-                Students can present innovative technology-based ideas.
-            </p>
+            <div id="output">
+                Loading events...
+            </div>
 
-            <p>
-                <a href="register.html">Register for competition</a>
-            </p>
-        </article>
+            <div class="pagination">
 
-        <article>
-            <h3>Campus Coding Challenge</h3>
+                <button
+                    type="button"
+                    id="previousButton"
+                    onclick="previousPage()"
+                >
+                    Previous
+                </button>
 
-            <p>
-                Date:
-                <time datetime="2026-09-05">5 September 2026</time>
-            </p>
+                <span id="pageInfo">
+                    Page 1
+                </span>
 
-            <p>
-                Test programming and problem-solving skills in a coding event.
-            </p>
-        </article>
+                <button
+                    type="button"
+                    id="nextButton"
+                    onclick="nextPage()"
+                >
+                    Next
+                </button>
 
-    </section>
+            </div>
 
-</main>
+        </section>
 
-<footer>
-    <p>&copy; 2026 StudentHub. All rights reserved.</p>
-</footer>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+
+        let events = [];
+        let page = 1;
+        let perPage = 5;
+
+
+        // Load events from events.json
+        fetch("events.json")
+
+            .then(function(response) {
+
+                if (!response.ok) {
+                    throw new Error("Unable to load events.json");
+                }
+
+                return response.json();
+            })
+
+            .then(function(data) {
+
+                events = data;
+
+                displayEvents();
+            })
+
+            .catch(function(error) {
+
+                document.getElementById("output").innerHTML =
+                    "<div class='message'>Error loading event data.</div>";
+            });
+
+
+        // Display events
+        function displayEvents() {
+
+            let searchText =
+                document.getElementById("search").value.toLowerCase();
+
+            let category =
+                document.getElementById("category").value;
+
+
+            // Search by event name
+            let result = events.filter(function(event) {
+
+                return event.name
+                    .toLowerCase()
+                    .includes(searchText);
+
+            });
+
+
+            // Filter by category
+            if (category != "All") {
+
+                result = result.filter(function(event) {
+
+                    return event.category == category;
+
+                });
+
+            }
+
+
+            // Calculate total pages
+            let totalPages =
+                Math.ceil(result.length / perPage);
+
+
+            if (totalPages == 0) {
+                totalPages = 1;
+            }
+
+
+            // Prevent invalid page number
+            if (page > totalPages) {
+                page = totalPages;
+            }
+
+
+            let start =
+                (page - 1) * perPage;
+
+            let end =
+                start + perPage;
+
+
+            let pageData =
+                result.slice(start, end);
+
+
+            let output = "";
+
+
+            // No events found
+            if (pageData.length == 0) {
+
+                output =
+                    "<div class='message'>No events found.</div>";
+
+            }
+
+
+            // Create event cards
+            pageData.forEach(function(event) {
+
+                output +=
+                    "<article class='event'>" +
+
+                    "<h3>" +
+                    event.name +
+                    "</h3>" +
+
+                    "<p><strong>Category:</strong> " +
+                    event.category +
+                    "</p>" +
+
+                    "<p><strong>Date:</strong> " +
+                    event.date +
+                    "</p>" +
+
+                    "<p>" +
+                    "<a href='register.html'>Register for event</a>" +
+                    "</p>" +
+
+                    "</article>";
+
+            });
+
+
+            document.getElementById("output").innerHTML =
+                output;
+
+
+            // Page information
+            document.getElementById("pageInfo").innerHTML =
+                "Page " + page + " of " + totalPages;
+
+
+            // Enable / disable pagination buttons
+            document.getElementById("previousButton").disabled =
+                page == 1;
+
+            document.getElementById("nextButton").disabled =
+                page >= totalPages;
+
+        }
+
+
+        // Search event
+        document.getElementById("search").addEventListener(
+            "input",
+            function() {
+
+                page = 1;
+
+                displayEvents();
+
+            }
+        );
+
+
+        // Filter category
+        document.getElementById("category").addEventListener(
+            "change",
+            function() {
+
+                page = 1;
+
+                displayEvents();
+
+            }
+        );
+
+
+        // Sort events by name
+        function sortEvents() {
+
+            events.sort(function(a, b) {
+
+                return a.name.localeCompare(b.name);
+
+            });
+
+            page = 1;
+
+            displayEvents();
+
+        }
+
+
+        // Next page
+        function nextPage() {
+
+            page++;
+
+            displayEvents();
+
+        }
+
+
+        // Previous page
+        function previousPage() {
+
+            if (page > 1) {
+
+                page--;
+
+                displayEvents();
+
+            }
+
+        }
+
+    </script>
 
 </body>
+
 </html>
