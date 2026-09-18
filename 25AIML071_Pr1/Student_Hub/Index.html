@@ -1,22 +1,19 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>StudentHub - Login</title>
-</head>
-<body>
+    <head>
+        <title>studentdetails</title>
+    </head>
+    <body>
+        <h1>Student Details</h1>
+        <div id="output"></div>
+        <script>
+            fetch("student.json").then(response => response.json()).then(data => {
+                data.forEach(student => {
+                    document.getElementById("output").innerHTML +=
+                    student.name + "-" +
+                    student.marks + "<br>";
+                });
+            });
+        </script>
 
-    <h1>StudentHub</h1>
-    <h2>Student Login</h2>
-
-    <form action="Dashboard.html">
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
-
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
-
-        <input type="submit" value="Login">
-    </form>
-
-</body>
+    </body>
 </html>
