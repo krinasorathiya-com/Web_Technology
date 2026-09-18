@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>StudentHub - Events</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        nav {
+            margin: 15px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin-right: 8px;
+        }
+
+        input, select, button {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        .event {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>StudentHub</h1>
+
+    <nav>
+
+        <a href="Dashboard.html">Home</a> |
+        <a href="Profile.html">Profile</a> |
+        <a href="Timetable.html">Timetable</a> |
+        <a href="Subjects.html">Subjects</a> |
+        <a href="Material.html">Materials</a> |
+        <a href="Assignment.html">Assignments</a> |
+        <a href="Announcement.html">Announcements</a> |
+        <a href="event.html">Events</a> |
+        <a href="Attendance.html">Attendance</a> |
+        <a href="Help.html">Help</a>
+
+    </nav>
+
+    <hr>
+
+    <h2>College Events</h2>
+
+    <div class="controls">
+
+        <!-- Search -->
+        <input
+            type="text"
+            id="search"
+            placeholder="Search event"
+        >
+
+        <!-- Filter -->
+        <select id="category">
+
+            <option value="All">All</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Seminar">Seminar</option>
+            <option value="Competition">Competition</option>
+
+        </select>
+
+        <!-- Sort -->
+        <button onclick="sortEvents()">
+            Sort by Name
+        </button>
+
+    </div>
+
+    <div id="output">
+        Loading...
+    </div>
+
+    <br>
+
+    <!-- Pagination -->
+
+    <button onclick="previousPage()">
+        Previous
+    </button>
+
+    <button onclick="nextPage()">
+        Next
+    </button>
+
+
+    <script>
+
+        let events = [];
+        let page = 1;
+        let perPage = 5;
+
+
+        // Fetch JSON data
+
+        fetch("events.json")
+
+            .then(response => response.json())
+
+            .then(data => {
+
+                events = data;
+
+                displayEvents();
+
+            })
+
+            .catch(error => {
+
+                document.getElementById("output").innerHTML =
+                    "Error loading data";
+
+            });
+
+
+        // Display events
+
+        function displayEvents() {
+
+            let searchText =
+                document.getElementById("search")
+                .value
+                .toLowerCase();
+
+            let category =
+                document.getElementById("category")
+                .value;
+
+
+            // Search
+
+            let result = events.filter(function(event) {
+
+                return event.name
+                    .toLowerCase()
+                    .includes(searchText);
+
+            });
+
+
+            // Filter
+
+            if (category != "All") {
+
+                result = result.filter(function(event) {
+
+                    return event.category == category;
+
+                });
+
+            }
+
+
+            // Pagination
+
+            let start = (page - 1) * perPage;
+
+            let end = start + perPage;
+
+            let pageData = result.slice(start, end);
+
+
+            // Display
+
+            let output = "";
+
+
+            pageData.forEach(function(event) {
+
+                output +=
+                    "<div class='event'>" +
+
+                    "<h3>" +
+                    event.name +
+                    "</h3>" +
+
+                    "<p>Category: " +
+                    event.category +
+                    "</p>" +
+
+                    "<p>Date: " +
+                    event.date +
+                    "</p>" +
+
+                    "</div>";
+
+            });
+
+
+            document.getElementById("output")
+                .innerHTML = output;
+
+        }
+
+
+        // Search
+
+        document.getElementById("search")
+            .addEventListener("input", function() {
+
+                page = 1;
+
+                displayEvents();
+
+            });
+
+
+        // Filter
+
+        document.getElementById("category")
+            .addEventListener("change", function() {
+
+                page = 1;
+
+                displayEvents();
+
+            });
+
+
+        // Sort
+
+        function sortEvents() {
+
+            events.sort(function(a, b) {
+
+                return a.name.localeCompare(b.name);
+
+            });
+
+            displayEvents();
+
+        }
+
+
+        // Next page
+
+        function nextPage() {
+
+            page++;
+
+            displayEvents();
+
+        }
+
+
+        // Previous page
+
+        function previousPage() {
+
+            if (page > 1) {
+
+                page--;
+
+                displayEvents();
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
