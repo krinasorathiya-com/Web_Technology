@@ -8,7 +8,6 @@ $conn = mysqli_connect("localhost", "root", "");
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
 }
-
 mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS secure_login");
 mysqli_select_db($conn, "secure_login");
 
